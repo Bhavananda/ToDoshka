@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoshkaCell" id="cj1-vM-GoF" customClass="ToDoshkaCell" customModule="ToDoshka" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cj1-vM-GoF" id="Qdy-XZ-Zcj">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="UYe-D2-23L">
+                        <rect key="frame" x="16" y="16" width="361" height="12"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="yiW-7w-0L1">
+                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="12"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjB-WM-HjM">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="6"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmO-oC-Vdr">
+                                        <rect key="frame" x="0.0" y="6" width="41.333333333333336" height="6"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="har-iU-Kix">
+                                <rect key="frame" x="286" y="0.0" width="75" height="12"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="UYe-D2-23L" firstAttribute="top" secondItem="Qdy-XZ-Zcj" secondAttribute="top" constant="16" id="dRo-Mr-vx5"/>
+                    <constraint firstItem="UYe-D2-23L" firstAttribute="leading" secondItem="Qdy-XZ-Zcj" secondAttribute="leading" constant="16" id="gFA-Go-Vgv"/>
+                    <constraint firstAttribute="trailing" secondItem="UYe-D2-23L" secondAttribute="trailing" constant="16" id="gHs-bY-hcJ"/>
+                    <constraint firstAttribute="bottom" secondItem="UYe-D2-23L" secondAttribute="bottom" constant="16" id="k1w-nx-8To"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="commentOfTask" destination="OmO-oC-Vdr" id="Tn3-GG-Kcz"/>
+                <outlet property="nameOfTask" destination="mjB-WM-HjM" id="cDy-fb-Y1U"/>
+                <outlet property="statusButton" destination="har-iU-Kix" id="rla-Fp-BCf"/>
+            </connections>
+            <point key="canvasLocation" x="-230" y="-113"/>
+        </tableViewCell>
+    </objects>
+</document>

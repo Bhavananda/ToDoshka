@@ -1,0 +1,6 @@
+framework module Pods_ToDoshka {
+  umbrella header "Pods-ToDoshka-umbrella.h"
+
+  export *
+  module * { export * }
+}
