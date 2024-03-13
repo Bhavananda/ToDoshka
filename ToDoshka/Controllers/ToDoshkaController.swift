@@ -24,6 +24,9 @@ class ToDoshkaController: UITableViewController {
         realm = try! Realm()
         
         ToDoshkaTableView.register(UINib(nibName: "ToDoshkaCell", bundle: nil), forCellReuseIdentifier: "ToDoshkaCell")
+        
+        ToDoshkaTableView.rowHeight = UITableView.automaticDimension
+        ToDoshkaTableView.estimatedRowHeight = 500
     }
     
     // MARK: - Datasource Method
