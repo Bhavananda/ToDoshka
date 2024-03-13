@@ -18,15 +18,14 @@ class ToDoshkaCell: UITableViewCell {
     
     let realm: Realm! = try! Realm()
     
-    @IBOutlet private weak var nameOfTask: UILabel!
-    @IBOutlet private weak var commentOfTask: UILabel!
+    @IBOutlet  weak var nameOfTask: UILabel!
+    @IBOutlet  weak var commentOfTask: UILabel!
     @IBOutlet private weak var statusButton: UIButton!
     
     
   func configure(with item: Item, onStatusChange: @escaping (ToDoStatus) -> Void) {
     guard let status = ToDoStatus(rawValue: item.status) else { return }
-    nameOfTask.text = item.name
-    commentOfTask.text = item.comment
+    
     let variantsStatus = [
       UIAction(title: "Не розпочато",
                image: UIImage(systemName: "octagon"),
@@ -34,8 +33,6 @@ class ToDoshkaCell: UITableViewCell {
                handler: { _ in
        
         onStatusChange(.notStarted)
-
-        
         print("Не розпочато")
       }),
       UIAction(title: "У процесі",
@@ -52,7 +49,6 @@ class ToDoshkaCell: UITableViewCell {
                handler: { _ in
         
         onStatusChange(.done)
-        
         print("Виконано")
       })
     ]

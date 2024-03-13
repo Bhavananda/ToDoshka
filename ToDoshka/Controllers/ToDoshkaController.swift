@@ -40,12 +40,15 @@ class ToDoshkaController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoshkaCell", for: indexPath) as! ToDoshkaCell
         let item = listToDo[indexPath.row]
         //
+        cell.nameOfTask.text = item.name
+        cell.commentOfTask.text = item.comment
         cell.configure(with: item) { newStatus in
             try! self.realm.write({
                 item.status = newStatus.rawValue
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             })
         }
+        
         
         return cell
     }
