@@ -27,6 +27,9 @@ class NewsTableViewController: UITableViewController {
                 self.newsTableView.reloadData()
             }
         }
+        
+        newsTableView.rowHeight = UITableView.automaticDimension
+        newsTableView.estimatedRowHeight = 500
     }
     
     // MARK: - Table view data source
@@ -47,12 +50,22 @@ class NewsTableViewController: UITableViewController {
             let articles = articlesIn.articles
             cell.titleLable?.text = articles[indexPath.row].title
             cell.descriptionLable?.text = articles[indexPath.row].description
-            cell.imageURL.load(url: articles[indexPath.row].urlToImage ?? URL(string: "")!)
+            let defaultImage = URL(string: "https://example.com/empty.jpg")
+            cell.imageURL.load(url: articles[indexPath.row].urlToImage ?? defaultImage!)
+                
+            
             
             
 
             return cell
         }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
     
     /*
      // Override to support conditional editing of the table view.

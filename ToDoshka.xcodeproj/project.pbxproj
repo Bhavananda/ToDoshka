@@ -73,6 +73,7 @@
 		1A29C6252B9740C600A64CBD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A3C7F5B2B973C350031B3BC /* ToDoshkaController.swift */,
 				1A6DFD942B9DE3E2003DEA9B /* NewsTableViewController.swift */,
 			);
 			path = Controllers;
@@ -112,7 +113,6 @@
 				1A3C7F572B973C350031B3BC /* AppDelegate.swift */,
 				1A3C7F592B973C350031B3BC /* SceneDelegate.swift */,
 				1A29C6252B9740C600A64CBD /* Controllers */,
-				1A3C7F5B2B973C350031B3BC /* ToDoshkaController.swift */,
 				1A29C6262B9740EF00A64CBD /* Data Model */,
 				1A29C6242B9740AD00A64CBD /* Views */,
 				1A3C7F602B973C370031B3BC /* Assets.xcassets */,

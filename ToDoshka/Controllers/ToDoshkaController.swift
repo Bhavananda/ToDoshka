@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class ToDoshkaController: UITableViewController {
-   
+    
     var realm: Realm!
     var listToDo: Results<Item>{
         get {
@@ -36,14 +36,14 @@ class ToDoshkaController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoshkaCell", for: indexPath) as! ToDoshkaCell
         let item = listToDo[indexPath.row]
-//
+        //
         cell.configure(with: item) { newStatus in
-          try! self.realm.write({
-            item.status = newStatus.rawValue
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-          })
+            try! self.realm.write({
+                item.status = newStatus.rawValue
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            })
         }
- 
+        
         return cell
     }
     
@@ -51,7 +51,7 @@ class ToDoshkaController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
-   
+    
     
     // MARK: - Add Delegate Method
     
@@ -97,35 +97,34 @@ class ToDoshkaController: UITableViewController {
                 let todoItemTextField = (alertVC.textFields?.first)! as UITextField
                 let todoItemTextField2 = (alertVC.textFields?[1])! as UITextField
                 
-                
                 let updatedToDoListItem = Item()
-                if !todoItemTextField.text!.isEmpty {
-                    updatedToDoListItem.name = todoItemTextField.text!
-                }
-                if !todoItemTextField2.text!.isEmpty {
-                    updatedToDoListItem.comment = todoItemTextField2.text!
-                }
-                let item = self.listToDo[indexPath.row]
-                
-                
-                try! self.realm.write({
-                    
-                    item.name = updatedToDoListItem.name
-                    item.comment = updatedToDoListItem.comment
-                    
-                    tableView.reloadRows(at: [indexPath], with: .automatic)
-                })
-                
+                if let text1 = todoItemTextField.text, !text1.isEmpty {
+                    updatedToDoListItem.name = text1
+                    let item = self.listToDo[indexPath.row]
+                    try! self.realm.write({
+                        item.name = updatedToDoListItem.name
+                        tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }) } else {
+                        
+                    }
+                if let text2 = todoItemTextField2.text, !text2.isEmpty {
+                    updatedToDoListItem.name = text2
+                    let item = self.listToDo[indexPath.row]
+                    try! self.realm.write({
+                        item.comment = text2
+                        tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }) } else {
+                        
+                    }
             }
             alertVC.addAction(editAction)
             self.present(alertVC, animated: true, completion: nil)
-            
             
         }
         editButton.backgroundColor = UIColor.systemMint
         deleteButton.backgroundColor = UIColor.red
         
-        return[editButton, deleteButton]
+        return[deleteButton, editButton]
     }
     
     // MARK: - Adding New Item
@@ -140,6 +139,14 @@ class ToDoshkaController: UITableViewController {
         alertVC.addTextField { (UITextField)  in
             UITextField.placeholder = "Опис"
         }
+        let errorAlert = UIAlertController(title: "Помилка", message: "Пуста таска не дозволена", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) -> Void in
+            errorAlert.dismiss(animated: true, completion: nil)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+        errorAlert.addAction(okAction)
+        
         let cancelAction = UIAlertAction.init(title: "Відмінити", style: .destructive, handler: nil)
         alertVC.addAction(cancelAction)
         
@@ -148,21 +155,27 @@ class ToDoshkaController: UITableViewController {
             let todoItemTextField = (alertVC.textFields?.first)! as UITextField
             let todoItemTextField2 = (alertVC.textFields?[1])! as UITextField
             
-            let newToDoListItem = Item()
-            newToDoListItem.name = todoItemTextField.text!
-            newToDoListItem.comment = todoItemTextField2.text!
-            newToDoListItem.status = "Не розпочато"
             
-            try! self.realm.write({
-                self.realm.add(newToDoListItem)
+            if let text = todoItemTextField.text, !text.isEmpty
+                {
+                let newToDoListItem = Item()
+                newToDoListItem.name = text
+                newToDoListItem.comment = todoItemTextField2.text!
+                newToDoListItem.status = "Не розпочато"
                 
-                self.tableView.insertRows(at: [IndexPath.init(row: self.listToDo.count-1, section: 0)], with: .automatic)
-            })
+                try! self.realm.write({
+                    self.realm.add(newToDoListItem)
+                    
+                    self.tableView.insertRows(at: [IndexPath.init(row: self.listToDo.count-1, section: 0)], with: .automatic)
+                })
+            } else {
+                self.present(errorAlert, animated: true, completion: nil )
+            }
+        }
+            alertVC.addAction(addAction)
+            present(alertVC, animated: true, completion: nil)
             
         }
-        
-        alertVC.addAction(addAction)
-        present(alertVC, animated: true, completion: nil)
     }
-}
+    
 
