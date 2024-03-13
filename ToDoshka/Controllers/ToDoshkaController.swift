@@ -71,6 +71,10 @@ class ToDoshkaController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexpath)
@@ -100,7 +104,7 @@ class ToDoshkaController: UITableViewController {
                 let todoItemTextField = (alertVC.textFields?.first)! as UITextField
                 let todoItemTextField2 = (alertVC.textFields?[1])! as UITextField
                 
-                let updatedToDoListItem = Item()
+                var updatedToDoListItem = Item()
                 if let text1 = todoItemTextField.text, !text1.isEmpty {
                     updatedToDoListItem.name = text1
                     let item = self.listToDo[indexPath.row]
@@ -108,7 +112,8 @@ class ToDoshkaController: UITableViewController {
                         item.name = updatedToDoListItem.name
                         tableView.reloadRows(at: [indexPath], with: .automatic)
                     }) } else {
-                        
+                        updatedToDoListItem.name = updatedToDoListItem.name
+                        print("Nu wo?")
                     }
                 if let text2 = todoItemTextField2.text, !text2.isEmpty {
                     updatedToDoListItem.name = text2
@@ -117,7 +122,8 @@ class ToDoshkaController: UITableViewController {
                         item.comment = text2
                         tableView.reloadRows(at: [indexPath], with: .automatic)
                     }) } else {
-                        
+                        updatedToDoListItem.comment = updatedToDoListItem.comment
+                        print("Catch your comment")
                     }
             }
             alertVC.addAction(editAction)
